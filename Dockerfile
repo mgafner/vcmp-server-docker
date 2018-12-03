@@ -49,9 +49,7 @@ RUN chmod u+x $HOME/start.sh
 
 HEALTHCHECK CMD nmap -sU -p 8192 localhost | grep open || exit 1
 
-#USER $USER
+USER $USER
 WORKDIR $HOME
 
 ENTRYPOINT ["/home/vcmp/start.sh"]
-
-EXPOSE 8192

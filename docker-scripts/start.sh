@@ -17,4 +17,4 @@
 # along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 echo "Starting Server..."
-/home/vcmp/mpsvrrel64 -allow-server-runas-root
+/home/vcmp/mpsvrrel64
