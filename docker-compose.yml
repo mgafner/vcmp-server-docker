@@ -1,0 +1,38 @@
+# Docker container for a Vice City Multiplayer Server
+#
+# This file is part of vcmp-server-docker
+# https://github.com/mgafner/vcmp-server-docker
+#
+# This is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+#
+# This is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this file.  If not, see <http://www.gnu.org/licenses/>.
+
+version: "2"
+
+services:
+  server:
+    image: vcmp-server
+    container_name: vcmp-server
+    restart: always
+    volumes:
+    # important for the log output
+      - ./server_log.txt:/home/vcmp/server_log.txt
+    # add your own config if you want
+      - ./server.cfg:/home/vcmp/server.cfg
+      - ./server.conf:/home/vcmp/server.conf
+      - ./scripts:/home/vcmp/scripts
+    # environment:
+    # [work in progress]
+    labels:
+      - "traefik.enable=false"
+    ports:
+      - "8192:8192/udp"
