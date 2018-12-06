@@ -17,9 +17,10 @@
 
 # Original Disclaimer:
 # -------------------
-Vice City Multiplayer 0.4 Blank Server (by Seby)
-You can use it to script your own server. Here you can find all events developed.
 
+Based on Script Skeleton from: Vice City Multiplayer 0.4 Blank Server (by Seby) [ http://forum.vc-mp.org/?topic=33.0 ]
+
+More information:
 VC:MP Official: www.vc-mp.org
 Forum: forum.vc-mp.org
 Wiki: wiki.vc-mp.org
@@ -31,16 +32,25 @@ Wiki: wiki.vc-mp.org
 /*
 function onServerStart()
 {
+        print("== Server started ==");
+
 }
 
 function onServerStop()
 {
+        print("== Server stopped ==");
 }
 */
 
 function onScriptLoad()
 {
-	print("Script loaded");
+	print("== Script loaded ==");
+
+        // theCherryPopper - Secret office unlocked:
+        // from: https://forum.vc-mp.org/?topic=214.msg1280#msg1280
+        HideMapObject(1259,-880.552, -575.726, 11.3371);
+        CreateObject(1259, 0, Vector(-879.757, -576.008, 11.3371), 255).RotateTo( Quaternion(0, 0, 0.5, -0.866025), 0 );
+
 }
 
 function onScriptUnload()
@@ -51,6 +61,8 @@ function onScriptUnload()
 
 function onPlayerJoin( player )
 {
+        MessagePlayer("Welcome " + player.Name + " to the server.", player);
+        print("Player '" + player.Name + "' joined");
 }
 
 function onPlayerPart( player, reason )
