@@ -269,6 +269,95 @@ function onPickupClaimPicked( player, pickup )
 
 function onPickupPickedUp( player, pickup )
 {
+        switch( pickup.ID )     // from http://forum.vc-mp.org/?topic=18.0
+                                // change the ids to your pickup ids
+        {
+                case 0:
+                        player.Pos = Vector( -933.277, -351.746, 7.22692 ); // To bank locker
+                        break;
+                case 1:
+                        player.Pos = Vector( -933.531, -351.39, 17.8038 ); // From bank locker
+                        break;
+                case 2:
+                        player.Pos = Vector( -555.477, 788.2, 97.5104 ); // To Office Buliding Lift(UP)
+                        break;
+                case 3:
+                        player.Pos = Vector( -562.089, 782.275, 22.8768 ); // To Office Buliding Lift(DOWN)
+                        break;
+                case 4:
+                        player.Pos = Vector( 140.503, -1366.83, 13.1827 ); // To Lawyers Office
+                        break;
+                case 5:
+                        player.Pos = Vector( 145.115, -1373.62, 10.432 ); // From Lawyers Office
+                        break;
+                case 6:
+                        player.Pos = Vector( 531.82, -127.311, 31.8522 ); // To Roof access near malibu #1
+                        break;
+                case 7:
+                        player.Pos = Vector( 531.851, -111.883, 10.7477 ); // From Roof access near malibu #1
+                        break;
+                case 8:
+                        player.Pos = Vector( 456.443, 30.3307, 34.8713 ); // To Roof access near malibu #2
+                        break;
+                case 9:
+                        player.Pos = Vector( 481.619, 30.4486, 11.0712 ); // From Roof access near malibu #2
+                        break;
+                case 10:
+                        player.Pos = Vector( -943.87, 1077.19, 11.0946 ); // To Lovefist
+                        break;
+                case 11:
+                        player.Pos = Vector( -888.268, 1054.37, 14.689 ); // From Lovefistcase
+                        break;
+                case 12:
+                        player.Pos = Vector( -820.836, 1355.72, 66.4525 ); // To Roof Access in Downtown #1
+                        break;
+                case 13:
+                        player.Pos = Vector( -828.593, 1304.96, 11.5887 ); // From Roof Access in Downtown #1
+                        break;
+                case 14:
+                        player.Pos = Vector( -1423.86, 941.064, 260.276 ); // To Bloodring
+                        break;
+                case 15:
+                        player.Pos = Vector( -1088.61, 1312.74, 9.50517 ); // From Bloodring
+                        break;
+                case 16:
+                        player.Pos = Vector( -1412.4, 1159.08, 266.689 ); // To Racetrack(Stadium)
+                        break;
+                case 17:
+                        player.Pos = Vector( -1086.57, 1352.84, 9.50517 ); // From Racetrack(Stadium)
+                        break;
+                case 18:
+                        player.Pos = Vector(  -445.71, 1127.11, 56.6909 ); // To VCN Building
+                        break;
+                case 19:
+                        player.Pos = Vector( -408.424, 1114.92, 11.0709 ); // From VCN Building
+                        break;
+                case 20:
+                        player.Pos = Vector( -444.803, 1253.35, 77.4241 ); // To Roof Access in Downtown #2
+                        break;
+                case 21:
+                        player.Pos = Vector( -449.452, 1252.74, 11.767 ); // From Roof Access in Downtown #2
+                        break;
+                case 22:
+                        player.Pos = Vector( -880.359, 1159.52, 17.8184 ); // To V Rock(Near Lovefist)
+                        break;
+                case 23:
+                        player.Pos = Vector( -872.045, 1161.86, 11.16 ); // From V Rock(Near Lovefist)
+                        break;
+                case 24:
+                        player.Pos = Vector( -1332.08, 1453.91, 299.146 ); // To Dirtring
+                        break;
+                case 25:
+                        player.Pos = Vector( -1105.68, 1333.03, 20.07 ); // From Dirtring
+                        break;
+                case 26:
+                        player.Pos = Vector( -890.945, 1066.15, 75.8666 ); // To Lovefist roof
+                        break;
+                case 27:
+                        player.Pos = Vector( -887.988, 1046.99, 14.4515 ); // From Lovefist roof
+                        break;
+        return0;
+        }
 }
 
 function onPickupRespawn( pickup )
