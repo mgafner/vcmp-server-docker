@@ -27,6 +27,14 @@ Wiki: wiki.vc-mp.org
 
 */
 
+// =========================================== O w n   F u n c t i o n s ==============================================
+
+function CVehicle::GetRadiansAngle() {  // from: https://forum.vc-mp.org/?topic=4229.msg31239#msg31239
+ local angle;
+ angle = ::asin( Rotation.z ) * -2;
+ return Rotation.w < 0 ? 3.14159 - angle : 6.28319 - angle;
+}
+
 // =========================================== S E R V E R   E V E N T S ==============================================
 
 /*
@@ -101,31 +109,10 @@ function onPlayerChat( player, text )
 	return 1;
 }
 
-function onPlayerCommand( player, cmd, text )
+function onPlayerCommand( player, command, text )
 {
-	if(cmd == "heal")
-	{
-		local hp = player.Health;
-		if(hp == 100) Message("[#FF3636]Error - [#8181FF]Use this command when you have less than 100% hp !");
-		else {
-			player.Health = 100.0;
-			MessagePlayer( "[#FFFF81]---> You have been healed !", player );
-		}
-	}
-	
-	else if(cmd == "goto") {
-		if(!text) MessagePlayer( "Error - Correct syntax - /goto <Name/ID>' !",player );
-		else {
-			local plr = FindPlayer(text);
-			if(!plr) MessagePlayer( "Error - Unknown player !",player);
-			else {
-				player.Pos = plr.Pos;
-				MessagePlayer( "[ /" + cmd + " ] " + player.Name + " was sent to " + plr.Name, player );
-			}
-		}
-		
-	}
-	else if(cmd == "bring") {
+        local cmd = command.tolower();
+	if(cmd == "bring") {
 		if(!text) MessagePlayer( "Error - Correct syntax - /bring <Name/ID>' !",player );
 		else {
 			local plr = FindPlayer(text);
@@ -136,7 +123,6 @@ function onPlayerCommand( player, cmd, text )
 			}
 		}
 	}
-	
 	else if(cmd == "exec") 
 	{
 		if( !text ) MessagePlayer( "Error - Syntax: /exec <Squirrel code>", player);
@@ -150,6 +136,66 @@ function onPlayerCommand( player, cmd, text )
 			catch(e) MessagePlayer( "Error: " + e, player);
 		}
 	}
+        else if(cmd == "getcar") {
+                if(!text) MessagePlayer("Error - Correct syntax - /getcar <car ID>",player);
+                else {  
+                        local car_id = text.tointeger();
+                        local vID = FindVehicle( car_id );
+                        if ( !vID ) MessagePlayer( "Error: no vehicle with ID " + car_id + " found.", player );
+                        else {
+                                local angle = player.Angle - (PI / 2);
+                                local x1 = player.Pos.x;
+                                local y1 = player.Pos.y;
+                                local radius = 5;
+                                local x2 = x1 - radius * cos(angle);
+                                local y2 = y1 - radius * sin(angle);
+                                local z2 = player.Pos.z;
+                                vID.Pos = Vector(x2,y2,z2);
+                                MessagePlayer( "Spawning vehicle " + car_id + " near you.", player );
+                        }
+                }
+        }
+	else if(cmd == "goto") {
+		if(!text) MessagePlayer( "Error - Correct syntax - /goto <Name/ID>' !",player );
+		else {
+			local plr = FindPlayer(text);
+			if(!plr) MessagePlayer( "Error - Unknown player !",player);
+			else {
+				player.Pos = plr.Pos;
+				MessagePlayer( "[ /" + cmd + " ] " + player.Name + " was sent to " + plr.Name, player );
+			}
+		}
+		
+	}
+	else if(cmd == "heal")
+	{
+		local hp = player.Health;
+		if(hp == 100) Message("[#FF3636]Error - [#8181FF]Use this command when you have less than 100% hp !");
+		else {
+			player.Health = 100.0;
+			MessagePlayer( "[#FFFF81]---> You have been healed !", player );
+		}
+	}
+        else if(cmd == "newvehicle") {
+                if(!text) MessagePlayer("Error - Correct syntax - /newvehicle <car name/ID>",player);
+                else {
+                        local car_id = text.tointeger();
+                        // MessagePlayer("number of text: " + car_id, player);
+                        // local angletype = typeof player.Angle;
+                        // MessagePlayer("typeof angle: " + angletype, player);
+                        // local angle = player.Angle;
+                        local angle = player.Angle - (PI / 2);
+                        local x1 = player.Pos.x;
+                        local y1 = player.Pos.y;
+                        local radius = 5;
+                        local x2 = x1 - radius * cos(angle);
+                        local y2 = y1 - radius * sin(angle);
+                        local z2 = player.Pos.z;
+                        local vehicle_angle = angle * -1;
+                        CreateVehicle(car_id, player.World, x2, y2, z2, vehicle_angle, 68, 39);
+                        MessagePlayer("Spawn " + GetVehicleNameFromModel(car_id), player);
+          }
+        }
 	return 1;
 }
 
