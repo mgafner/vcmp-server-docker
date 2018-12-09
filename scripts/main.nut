@@ -196,6 +196,31 @@ function onPlayerCommand( player, command, text )
                         MessagePlayer("Spawn " + GetVehicleNameFromModel(car_id), player);
           }
         }
+        else if(cmd == "pcreate") {
+                // create pickup
+                if (!text)
+                {
+                        MessagePlayer("/pcreate <Model>",player);
+                }
+                else
+                {
+                        local Model     = text.tointeger();
+                        local World     = player.World;
+                        local Quantity  = 1;
+                        local PosX      = player.Pos.x;
+                        local PosY      = player.Pos.y;
+                        local PosZ      = player.Pos.z;
+                        local Alpha     = 255;
+                        local IsAuto    = true;
+                        local Creator   = player.Name;
+                        local CreateDate= "";
+                        local CreateTime= "";
+                        local Text      = "";
+
+                        local pickup = CreatePickup( Model, World, Quantity, PosX, PosY, PosZ, Alpha, IsAuto);
+                        MessagePlayer("Pickup #" + pickup.ID + " created.",player);
+                }
+        }
 	return 1;
 }
 
