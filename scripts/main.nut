@@ -221,6 +221,102 @@ function onPlayerCommand( player, command, text )
                         MessagePlayer("Pickup #" + pickup.ID + " created.",player);
                 }
         }
+        else if(cmd == "pload") {
+                // load pickups from database
+                // for a serie of pickups
+                db <- ConnectSQL("database.sqlite");
+                QuerySQL(db,"CREATE TABLE IF NOT EXISTS Pickups(ID NUMERIC, Model NUMERIC, World NUMERIC, Quantity NUMERIC, PosX NUMERIC, PosY NUMERIC, PosZ NUMERIC, Alpha NUMERIC, IsAuto BOOLEAN, Creator TEXT, CreateDate TEXT, CreateTime TEXT, Text TEXT)" );
+
+                local query = QuerySQL( db, "SELECT * FROM Pickups" );
+                if ( query )
+                {
+                        do
+                        {
+                                local id      = GetSQLColumnData(query, 0);
+                                local pickup  = FindPickup( id.tointeger() );
+                                if ( !pickup )
+                                {
+                                        local Model     = GetSQLColumnData(query, 1);
+                                        local World     = GetSQLColumnData(query, 2);
+                                        local Quantity  = GetSQLColumnData(query, 3);
+                                        local PosX      = GetSQLColumnData(query, 4);
+                                        local PosY      = GetSQLColumnData(query, 5);
+                                        local PosZ      = GetSQLColumnData(query, 6);
+                                        local Alpha     = GetSQLColumnData(query, 7);
+                                        local IsAuto    = GetSQLColumnData(query, 8);
+                                        local Creator   = GetSQLColumnData(query, 9);
+                                        local CreateDate= GetSQLColumnData(query, 10);
+                                        local CreateTime= GetSQLColumnData(query, 11);
+                                        local Text      = GetSQLColumnData(query, 12);
+
+                                        CreatePickup( Model, World, Quantity, PosX, PosY, PosZ, Alpha, IsAuto);
+                                }
+                                else
+                                {
+                                        print("Pickup #" + id + " already in game.");
+                                }
+                        } while (GetSQLNextRow(query)) // Gets the second entry when the loop starts and continues getting the next row after that until no rows are left.
+                }
+                else
+                {
+                        MessagePlayer("No pickups found in database.",player);
+                }
+                FreeSQLQuery( query );
+                DisconnectSQL( db );
+        }
+        else if(cmd == "psave") {
+                // save pickup to database, one single pickup
+                if (!text)
+                {
+                        MessagePlayer("We need the pickup #id! Enter /psave <ID>",player);
+                }
+                else
+                {
+                        local id      = text.tointeger();
+                        local pickup  = FindPickup( id );
+                        if ( !pickup )
+                        {
+                                MessagePlayer("Pickup #" + text + " not found.",player);
+                        }
+                        else
+                        {
+                                local Model     = text.tointeger();
+                                local World     = player.World;
+                                local Quantity  = 1;
+                                local PosX      = player.Pos.x;
+                                local PosY      = player.Pos.y;
+                                local PosZ      = player.Pos.z;
+                                local Alpha     = 255;
+                                local IsAuto    = true;
+                                local Creator   = player.Name;
+                                local CreateDate= "";
+                                local CreateTime= "";
+                                local Text      = "";
+
+                                // open database and table
+                                db <- ConnectSQL( "database.sqlite" );
+                                // save data to table
+                                local query = QuerySQL(db, "SELECT * FROM Pickups WHERE ID = " + pickup.ID);
+                                local answer = GetSQLColumnData( query, 0 );
+                                if ( answer == pickup.ID )
+                                {
+                                        // update
+                                        local query = QuerySQL(db, "UPDATE Pickups SET Model = '" + model + "', World = '" + World + "', Quantity = '" + Quantity + "', PosX = '" + PosX + "', PosY = '" + PosY + "', PosZ = '" + PosZ + "', Alpha = '" + Alpha + "', IsAuto = '" + IsAuto + "', Creator = '" + Creator + "', CreateDate = '" + CreateDate + "', CreateTime = '" + CreateTime + "', Text = '" + Text + "' WHERE ID = " + pickup.ID);
+                                        MessagePlayer("Pickup #" + pickup.ID + " updated in database.",player);
+                                }
+                                else
+                                {
+                                        // insert
+                                        local query = QuerySQL(db, "INSERT INTO Pickups (ID, Model, World, Quantity, PosX, PosY, PosZ, Alpha, IsAuto, Creator, CreateDate, CreateTime, Text ) VALUES ('" + pickup.ID + "', '" + Model + "', '" + PosX + "', '" + PosY + "', '" + PosZ + "', '" + Alpha + "', '" + IsAuto + "', '" + Creator + "', '" + CreateDate + "', '" + CreateTime + "', '" + Text + "')" );
+                                        MessagePlayer("Pickup #" + pickup.ID + " saved in database.",player);
+                                }
+
+                                // close database
+                                FreeSQLQuery( query );
+                                DisconnectSQL( db );
+                        }
+                }
+        }
 	return 1;
 }
 
