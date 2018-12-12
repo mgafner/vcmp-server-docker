@@ -317,6 +317,51 @@ function onPlayerCommand( player, command, text )
                         }
                 }
         }
+        else if(cmd == "vsave")         // save vehicle in database
+        {
+                local vehicle =  player.Vehicle;
+                if ( !vehicle )         // player has to be in a vehicle
+                {
+                        MessagePlayer( "You have to be the driver of the vehicle which you want to save", player);
+                }
+                else
+                {
+                        // get data from vehicle
+                        local model  = vehicle.Model;
+                        local posx   = vehicle.Pos.x;
+                        local posy   = vehicle.Pos.y;
+                        local posz   = vehicle.Pos.z;
+                        local anglex = vehicle.Angle.x;
+                        local angley = vehicle.Angle.y;
+                        local anglez = vehicle.Angle.z;
+                        local anglew = vehicle.Angle.w;
+                        local col1   = vehicle.Colour1;
+                        local col2   = vehicle.Colour2;
+
+                        local anglew  = vehicle.GetRadiansAngle(); // thanks for this post! -> https://forum.vc-mp.org/?topic=4229.msg31239#msg31239
+
+                        // open database and table
+                        db <- ConnectSQL( "database.sqlite" );
+                        // save data to table
+                        local query = QuerySQL(db, "SELECT * FROM Vehicles WHERE ID = " + vehicle.ID);
+                        local answer = GetSQLColumnData( query, 0 );
+                        if ( answer == vehicle.ID )
+                        {
+                                // update 
+                                local query = QuerySQL(db, "UPDATE Vehicles SET Model = '" + model + "', PosX = '" + posx + "', PosY = '" + posy + "', PosZ = '" + posz + "', AngleX = '" + anglex + "', AngleY = '" + angley + "', AngleZ = '" + anglez + "', AngleW = '" + anglew + "', Colour1 = '" + col1 + "', Colour2 = '" + col2 + "' WHERE ID = " + vehicle.ID);
+                                MessagePlayer("Vehicle #" + vehicle.ID + " '" + GetVehicleNameFromModel(model) + "' " + "updated in database.",player);
+                        }
+                        else
+                        {
+                                // insert
+                                local query = QuerySQL(db, "INSERT INTO Vehicles (ID, Model, PosX, PosY, PosZ, AngleX, AngleY, AngleZ, AngleW, Colour1, Colour2) VALUES ('" + vehicle.ID + "', '" + model + "', '" + posx + "', '" + posy + "', '" + posz + "', '" + anglex + "', '" + angley + "', '" + anglez + "', '" + anglew + "', '" + col1 + "', '" + col2 + "')" );
+                                MessagePlayer("Vehicle #" + vehicle.ID + " '" + GetVehicleNameFromModel(model) + "' " + "saved in database.",player);
+                        }
+                        // close database
+                        FreeSQLQuery( query );
+                        DisconnectSQL( db );
+                }
+        }
 	return 1;
 }
 
