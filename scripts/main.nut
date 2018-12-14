@@ -362,6 +362,47 @@ function onPlayerCommand( player, command, text )
                         DisconnectSQL( db );
                 }
         }
+        else if(cmd == "vload")         // load all vehicles from database
+        {
+                db <- ConnectSQL( "database.sqlite" );
+                QuerySQL(db, "CREATE TABLE IF NOT EXISTS Vehicles(ID NUMERIC, Model NUMERIC, PosX FLOAT, PosY FLOAT, PosZ FLOAT, AngleX FLOAT, AngleY FLOAT, AngleZ FLOAT, AngleW FLOAT, Colour1 NUMERIC, Colour2 NUMERIC, Health NUMERIC, Immunity NUMERIC, IsGhost NUMERIC, Lights NUMERIC, Siren NUMERIC, Alarm NUMERIC, Locked NUMERIC, Radio NUMERIC, RadioLocked NUMERIC)" );
+
+                local query = QuerySQL( db, "SELECT * FROM Vehicles" );
+                if ( query )
+                {
+                        do
+                        {
+                                local id      = GetSQLColumnData(query, 0);
+                                local vehicle = FindVehicle( id );
+                                if ( !vehicle )
+                                {
+                                        local model  = GetSQLColumnData(query, 1);
+                                        local posx   = GetSQLColumnData(query, 2);
+                                        local posy   = GetSQLColumnData(query, 3);
+                                        local posz   = GetSQLColumnData(query, 4);
+                                        local anglex = GetSQLColumnData(query, 5);
+                                        local angley = GetSQLColumnData(query, 6);
+                                        local anglez = GetSQLColumnData(query, 7);
+                                        local anglew = GetSQLColumnData(query, 8);
+                                        local col1   = GetSQLColumnData(query, 9);
+                                        local col2   = GetSQLColumnData(query, 10);
+                                        local pos    = Vector( posx, posy, posz );
+                                        print("Create vehicle: " + id + "'" + GetVehicleNameFromModel(model) + "'");
+                                        CreateVehicle( model, pos, anglew, col1, col2);
+                                }
+                                else
+                                {
+                                        print("Vehicle ID " + vehicle.ID + " already in game.");
+                                }
+                        } while (GetSQLNextRow(query)) // Gets the second entry when the loop starts and continues getting the next row after that until no rows are left.
+                }
+                else
+                {
+                        MessagePlayer("No vehicles found in database.",player);
+                }
+                FreeSQLQuery( query );
+                DisconnectSQL( db );
+        }
 	return 1;
 }
 
