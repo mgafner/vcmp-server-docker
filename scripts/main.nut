@@ -317,6 +317,10 @@ function onPlayerCommand( player, command, text )
                         }
                 }
         }
+        else if(cmd == "reload")
+        {
+                ReloadScripts();
+        }
         else if(cmd == "vdel")          // delete vehicle from database (but not from world)
         {
         }
