@@ -41,7 +41,6 @@ function CVehicle::GetRadiansAngle() {  // from: https://forum.vc-mp.org/?topic=
 function onServerStart()
 {
         print("== Server started ==");
-
 }
 
 function onServerStop()
@@ -58,7 +57,6 @@ function onScriptLoad()
         // from: https://forum.vc-mp.org/?topic=214.msg1280#msg1280
         HideMapObject(1259,-880.552, -575.726, 11.3371);
         CreateObject(1259, 0, Vector(-879.757, -576.008, 11.3371), 255).RotateTo( Quaternion(0, 0, 0.5, -0.866025), 0 );
-
 }
 
 function onScriptUnload()
@@ -75,6 +73,39 @@ function onPlayerJoin( player )
 
 function onPlayerPart( player, reason )
 {
+    switch (reason)
+    {
+        case 0:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+ " [#ffffff]timeout.");
+            break;
+        }
+        case 1:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+" [#ffffff]quit.");
+            break;
+        }
+        case 2:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+ " [#ffffff]ban kicked.");
+            break;
+        }
+        case 2:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+" [#FFFFFF]Kicked.");
+            break;
+        }
+        case 2:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+" [#FFFFFF]banned.");
+            break;
+        }
+        case 3:
+        {
+            Message("[#FF77AF][PART] [#ac8000] "+player.Name+" [#FFFFFF]crashed with error.");
+            break;
+        }
+    }
 }
 
 function onPlayerRequestClass( player, classID, team, skin )
@@ -176,6 +207,10 @@ function onPlayerCommand( player, command, text )
 			MessagePlayer( "[#FFFF81]---> You have been healed !", player );
 		}
 	}
+        else if(cmd == "help")
+        {
+                MessagePlayer( "Commands: angle, exec, getcar, goto, heal, help, newvehicle, pos[ition], quit, reload", player );
+        }
         else if(cmd == "newvehicle") {
                 if(!text) MessagePlayer("Error - Correct syntax - /newvehicle <car name/ID>",player);
                 else {
@@ -221,6 +256,9 @@ function onPlayerCommand( player, command, text )
                         MessagePlayer("Pickup #" + pickup.ID + " created.",player);
                 }
         }
+        else if(cmd == "pdelete") {
+                // delete pickup from database
+        }
         else if(cmd == "pload") {
                 // load pickups from database
                 // for a serie of pickups
@@ -263,6 +301,9 @@ function onPlayerCommand( player, command, text )
                 }
                 FreeSQLQuery( query );
                 DisconnectSQL( db );
+        }
+        else if(cmd == "premove") {
+                // remove pickup from world, one single pickup
         }
         else if(cmd == "psave") {
                 // save pickup to database, one single pickup
@@ -316,6 +357,9 @@ function onPlayerCommand( player, command, text )
                                 DisconnectSQL( db );
                         }
                 }
+        }
+        else if(cmd == "punload") {
+                // unload (remove) pickups from the world
         }
         else if(cmd == "reload")
         {
@@ -418,6 +462,10 @@ function onPlayerCommand( player, command, text )
         }
         else if(cmd == "vunload")       // unload all vehicles we have in database from the world (vehicle.remove all)
         {
+        }
+        else
+        {
+          MessagePlayer("Error - Unknown command " + cmd + ". Type /help for a list of commands.",player);
         }
 	return 1;
 }
