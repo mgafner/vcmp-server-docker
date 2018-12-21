@@ -361,6 +361,10 @@ function onPlayerCommand( player, command, text )
         else if(cmd == "punload") {
                 // unload (remove) pickups from the world
         }
+        else if(cmd == "pos")
+        {
+                MessagePlayer( "Position [x,y,z]: " + player.Pos.x + "," + player.Pos.y + "," + player.Pos.z, player );
+        }
         else if(cmd == "reload")
         {
                 ReloadScripts();
