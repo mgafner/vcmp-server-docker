@@ -154,6 +154,37 @@ function onPlayerCommand( player, command, text )
 			}
 		}
 	}
+        else if(cmd == "cpcolor") {
+                // set color of a Checkpoint
+        }
+        else if(cmd == "cpcreate") {
+                // create Checkpoint
+                //                                   spherical=true
+                local cp = CreateCheckpoint(null, 0, false, player.Pos, ARGB(255, 0, 255, 255), 2);
+                MessagePlayer("Checkpoint #" + cp.ID + " created.",player);
+        }
+        else if(cmd == "cpdelete") {
+                // delete Checkpoint from database
+        }
+        else if(cmd == "cpload") {
+                // load Checkpoints from database
+                // for a serie of checkpoints
+        }
+        else if(cmd == "cpradius") {
+                // set radius of a Checkpoint
+        }
+        else if(cmd == "cpremove") {
+                // remove Checkpoint from world, one single checkpoint
+        }
+        else if(cmd == "cpsave") {
+                // save Checkpoint to database, one single checkpoint
+        }
+        else if(cmd == "cpsphere") {
+                // toggle checkpoint sphere true or false
+        }
+        else if(cmd == "cpunload") {
+                // unload (remove) Checkpoints from the world
+        }
 	else if(cmd == "exec") 
 	{
 		if( !text ) MessagePlayer( "Error - Syntax: /exec <Squirrel code>", player);
