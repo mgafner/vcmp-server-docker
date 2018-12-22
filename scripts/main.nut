@@ -400,6 +400,20 @@ function onPlayerCommand( player, command, text )
         {
                 ReloadScripts();
         }
+        else if(cmd == "skin")
+        {
+                if (!text)
+                {
+                        MessagePlayer("Your current skin is '" + GetSkinName( player.Skin ) + "' (ID #" + player.Skin + ").",player);
+			// todo: only on selected level or admin, the player can change the skin
+                        MessagePlayer("To change the skin, enter /skin <skin-id>",player);
+                }
+                else
+                {
+			player.Skin = text.tointeger();
+                        MessagePlayer("Your new skin is '" + GetSkinName( player.Skin ) + "' (ID #" + player.Skin + ").",player);
+		}
+        }
         else if(cmd == "vdel")          // delete vehicle from database (but not from world)
         {
         }
