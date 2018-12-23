@@ -396,6 +396,39 @@ function onPlayerCommand( player, command, text )
         {
                 MessagePlayer( "Position [x,y,z]: " + player.Pos.x + "," + player.Pos.y + "," + player.Pos.z, player );
         }
+        else if(cmd == "quit")
+        {
+                // do nothing, "/quit" is a built in function and automatically leaves the server and ends the game
+        }
+        else if(cmd == "register")
+        {
+                if (!text)
+                {
+                        MessagePlayer("Error: no password given. Use /register <your password>",player);
+                }
+                else
+                {
+                        // register user in database so his statistics, level and other data is safe.
+                        // register <password>
+                        db <- ConnectSQL("database.sqlite");
+                        QuerySQL(db,"CREATE TABLE IF NOT EXISTS Players(Name TEXT, Password TEXT, Email TEXT, Skin NUMERIC, Job TEXT, Admin Numeric, Level Numeric, Ammo Numeric, Armour Numeric, CanAttack Boolean, CanDriveby Boolean, Cash Numeric, Immunity Numeric, IP TEXT )" );
+                        local query = QuerySQL(db, "SELECT * FROM Users WHERE PlayerName = " + player.Name);
+                        local answer = GetSQLColumnData( query, 0 );
+                        if ( answer == player.Name )
+                        {
+                                MessagePlayer( "This name (" + player.Name + ") already exists. Choose another ;)", player );
+                        }
+                        else
+                        {
+                                // insert new user into database
+                                local query = QuerySQL(db, "INSERT INTO Players(Name, Password) VALUES ('" + player.Name + "', '" + text + "')" );
+                                MessagePlayer("Pickup #" + pickup.ID + " saved in database.",player);
+                        }
+                        // close database
+                        FreeSQLQuery( query );
+                        DisconnectSQL( db );
+                }
+        }
         else if(cmd == "reload")
         {
                 ReloadScripts();

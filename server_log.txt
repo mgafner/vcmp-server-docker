@@ -111,3 +111,216 @@ Player 'Neala' ID 0 disconnected (timeout).
 [0;36m[SCRIPT][0;37m Player 'SeanMcTigi' joined
 [0;36m[SCRIPT][0;37m == Script loaded ==
 [0;32m[MODULE][0;37m Scripts reloaded.
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+scripts/main.nut line = (424) column = (125) : error expected 'IDENTIFIER'
+[0;30m[WARNING][0;37m Could not load script 'scripts/main.nut'
+[0;30m[WARNING][0;37m expected 'IDENTIFIER'
+[0;30m[ERROR][0;37m No Squirrel gamemode was specified.
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+scripts/main.nut line = (424) column = (124) : error expected 'IDENTIFIER'
+[0;30m[WARNING][0;37m Could not load script 'scripts/main.nut'
+[0;30m[WARNING][0;37m expected 'IDENTIFIER'
+[0;30m[ERROR][0;37m No Squirrel gamemode was specified.
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hash-linux64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hash-linux64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Loaded plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
+
+ Vice City Multiplayer Server
+ -------------------------------
+ v0.4, (c) 2007-2014 VC:MP Team
+
+Failed to load plugin: hashing04rel64
+
+Loaded plugin: ini04rel64
+
+Loaded plugin: mysql04rel64
+
+Loaded plugin: sockets04rel64
+
+Loaded plugin: sqlite04rel64
+
+Loaded plugin: squirrel04rel64
+
+Loaded plugin: xmlconf04rel64
+
+[WEAPONS] No custom weapons to load.
+[VEHICLEMODELS] No custom vehicle models to load.
+[0;32m[MODULE][0;37m Loaded SqVCMP 0.4 frontend by Stormeus. (v1.0)
+[0;36m[SCRIPT][0;37m == Script loaded ==
