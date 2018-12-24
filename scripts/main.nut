@@ -185,6 +185,26 @@ function onPlayerCommand( player, command, text )
         else if(cmd == "cpunload") {
                 // unload (remove) Checkpoints from the world
         }
+        else if ( cmd == "engine" )     // control vehicle engine! [from: https://forum.vc-mp.org/?topic=5721.msg40314#msg40314 ]
+        {
+                if ( !text ) MessagePlayer( "type /engine (on/off)", player);
+                else if ( text == "on" )
+                {
+                        local veh = player.Vehicle;
+                        veh.ResetHandlingData( 13 );
+                        veh.ResetHandlingData( 14 );
+                        MessagePlayer("Engine turned on!", player);
+                }
+                else if ( text == "off" )
+                {
+                        local veh = player.Vehicle;
+                        veh.Speed = Vector( 0, 0, 0 );
+                        veh.SetHandlingData( 13, 0 );
+                        veh.SetHandlingData( 14, 0 );
+                        MessagePlayer("Vehicle lights are turned off", player);
+                }
+                else MessagePlayer("Engine turned off!", player);
+        }
 	else if(cmd == "exec") 
 	{
 		if( !text ) MessagePlayer( "Error - Syntax: /exec <Squirrel code>", player);
@@ -637,6 +657,8 @@ function onPlayerEnteringVehicle( player, vehicle, door )
 
 function onPlayerEnterVehicle( player, vehicle, door )
 {
+    MessagePlayer("Entered in vehicle #" + vehicle.ID + " '" + GetVehicleNameFromModel(vehicle.Model) + "'",player);
+    return 1;
 }
 
 function onPlayerExitVehicle( player, vehicle )
@@ -767,10 +789,12 @@ function onPickupRespawn( pickup )
 
 function onObjectShot( object, player, weapon )
 {
+        MessagePlayer("You've shot object id "+object+" with weapon id "+weapon,player)
 }
 
 function onObjectBump( object, player )
 {
+        MessagePlayer("Object #" + object.ID + " bumped.",player);
 }
 
 // =========================================== B I N D   E V E N T S ==============================================
