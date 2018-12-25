@@ -17,4 +17,8 @@
 # along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
 echo "Starting Server..."
-/home/vcmp/mpsvrrel64
+stdbuf -oL ./mpsvrrel64 |
+  while IFS= read -r line
+  do
+    echo "$line"
+  done

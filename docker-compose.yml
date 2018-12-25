@@ -24,8 +24,6 @@ services:
     container_name: vcmp-server
     restart: always
     volumes:
-    # important for the log output
-      - ./server_log.txt:/home/vcmp/server_log.txt
     # add your own config if you want
       - ./server.cfg:/home/vcmp/server.cfg
       - ./server.conf:/home/vcmp/server.conf

@@ -14,11 +14,11 @@
 # You should have received a copy of the GNU General Public License
 # along with this file.  If not, see <http://www.gnu.org/licenses/>.
 
-FROM debian
+FROM debian:latest
 MAINTAINER Martin Gafner <gafner@puzzle.ch>
 
-RUN apt-get update
-RUN apt-get install -y nmap sudo
+RUN DEBIAN_FRONTEND=noninteractive apt-get update
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y nmap sudo
 
 ENV USER vcmp
 ENV UID 1000
@@ -47,9 +47,9 @@ COPY scripts/* $HOME/scripts/
 COPY docker-scripts/start.sh $HOME
 RUN chmod u+x $HOME/start.sh
 
-HEALTHCHECK CMD nmap -sU -p 8192 localhost | grep open || exit 1
-
 USER $USER
 WORKDIR $HOME
+
+HEALTHCHECK CMD sudo nmap -sU -p 8192 localhost | grep open || exit 1
 
 ENTRYPOINT ["/home/vcmp/start.sh"]
